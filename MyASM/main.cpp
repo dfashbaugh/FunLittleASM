@@ -3,6 +3,8 @@
 #include "Commands.h"
 #include "commandTests.h"
 
+#define RUNTESTS
+
 using namespace std;
 
 void printRegisters(std::vector <int> &registers)
@@ -39,6 +41,10 @@ void executeProgram(std::vector <command*> commandVector)
 int main(void)
 {
 	cout << "Begin!" << endl;
+
+#ifdef RUNTESTS
+	if(!runTests()) return 1; // Return failure
+#endif
 
 	// Write the program
 	std::vector <command*> commandVector;
