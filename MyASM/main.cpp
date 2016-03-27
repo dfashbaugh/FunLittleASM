@@ -7,37 +7,6 @@
 
 using namespace std;
 
-void printRegisters(std::vector <int> &registers)
-{
-	cout << endl << "Print Register List" << endl;
-
-	int counter = 0;
-
-	for(auto &number : registers)
-	{
-		cout << counter << " " << number << endl;
-		counter++;
-	}
-
-	cout << endl << "End Print Register List" << endl;
-}
-
-void executeProgram(std::vector <command*> commandVector)
-{
-	int programCounter = 0;
-	bool done = false;
-	std::vector <int> registers;
-
-	while(!done)
-	{
-		commandVector[programCounter]->execute(registers, programCounter);
-
-		if(programCounter >= commandVector.size()) done = true;
-	}
-
-	printRegisters(registers);
-}
-
 int main(void)
 {
 	cout << "Begin!" << endl;
@@ -48,11 +17,16 @@ int main(void)
 
 	// Write the program
 	std::vector <command*> commandVector;
-	commandVector.push_back(new set(0, 20));
-	commandVector.push_back(new set(1, 4));
-	commandVector.push_back(new add(0, 0, 0));
-	commandVector.push_back(new set(5, 10));
-	commandVector.push_back(new add(3, 1, 5));
+	//commandVector.push_back(new set(0, 20));
+	//commandVector.push_back(new set(1, 4));
+	//commandVector.push_back(new add(0, 0, 0));
+	//commandVector.push_back(new set(5, 10));
+	//commandVector.push_back(new add(3, 1, 5));
+	commandVector.push_back(new set(0, 0));
+	commandVector.push_back(new set(1, 1));
+	commandVector.push_back(new set(2, 20));
+	commandVector.push_back(new add(0, 1, 0));
+	commandVector.push_back(new branchGreaterThan(2, 0, 3));
 
 	// Execute the program
 	executeProgram(commandVector);

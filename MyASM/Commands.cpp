@@ -2,6 +2,40 @@
 #include <iostream>
 using namespace std;
 
+// Print the whole register list
+void printRegisters(std::vector <int> &registers)
+{
+	cout << endl << "Print Register List" << endl;
+
+	int counter = 0;
+
+	for(auto &number : registers)
+	{
+		cout << counter << " " << number << endl;
+		counter++;
+	}
+
+	cout << endl << "End Print Register List" << endl;
+}
+
+// Execute the program defined by the commandVector
+void executeProgram(std::vector <command*> commandVector)
+{
+	int programCounter = 0;
+	bool done = false;
+	std::vector <int> registers;
+
+	while(!done)
+	{
+		commandVector[programCounter]->execute(registers, programCounter);
+
+		if(programCounter >= commandVector.size()) done = true;
+	}
+
+	printRegisters(registers);
+}
+
+// Set the register buffer to the correct size based on the maximum address
 void setRegisterSize(std::vector <int> &registers, int maxAddr)
 {
 	while(registers.size() <= maxAddr)
