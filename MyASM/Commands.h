@@ -70,3 +70,54 @@ struct multiply : command
 
 	virtual void execute(std::vector <int> &registers, int &programCounter);
 };
+
+// Branch if values at opAddress1 and opAddress2 are equal
+struct branchEqualTo : command
+{
+	int opAddr1;
+	int opAddr2;
+	int brAddr;
+
+	branchEqualTo(int opAddress1, int opAddress2, int branchAddress)
+	{
+		opAddr1 = opAddress1;
+		opAddr2 = opAddress2;
+		brAddr = branchAddress;
+	}
+
+	virtual void execute(std::vector <int> &registers, int &programCounter);
+};
+
+// Branch if values at opAddress1 and opAddress2 are not equal
+struct branchNotEqualTo : command
+{
+	int opAddr1;
+	int opAddr2;
+	int brAddr;
+
+	branchNotEqualTo(int opAddress1, int opAddress2, int branchAddress)
+	{
+		opAddr1 = opAddress1;
+		opAddr2 = opAddress2;
+		brAddr = branchAddress;
+	}
+
+	virtual void execute(std::vector <int> &registers, int &programCounter);
+};
+
+// Branch if value at opAddress1 is greater than value at opAddress2
+struct branchGreaterThan : command
+{
+	int opAddr1;
+	int opAddr2;
+	int brAddr;
+
+	branchGreaterThan(int opAddress1, int opAddress2, int branchAddress)
+	{
+		opAddr1 = opAddress1;
+		opAddr2 = opAddress2;
+		brAddr = branchAddress;
+	}
+
+	virtual void execute(std::vector <int> &registers, int &programCounter);
+};

@@ -45,3 +45,45 @@ void multiply::execute(std::vector <int> &registers, int &programCounter)
 
 	programCounter++;
 }
+
+void branchEqualTo::execute(std::vector <int> &registers, int &programCounter)
+{
+	setRegisterSize(registers, std::max(opAddr2, opAddr1));
+
+	if(registers[opAddr1] == registers[opAddr2])
+	{
+		programCounter = brAddr;
+	} 
+	else 
+	{
+		programCounter++;
+	}
+}
+
+void branchNotEqualTo::execute(std::vector <int> &registers, int &programCounter)
+{
+	setRegisterSize(registers, std::max(opAddr2, opAddr1));
+
+	if(registers[opAddr1] != registers[opAddr2])
+	{
+		programCounter = brAddr;
+	} 
+	else 
+	{
+		programCounter++;
+	}
+}
+
+void branchGreaterThan::execute(std::vector <int> &registers, int &programCounter)
+{
+	setRegisterSize(registers, std::max(opAddr2, opAddr1));
+
+	if(registers[opAddr1] > registers[opAddr2])
+	{
+		programCounter = brAddr;
+	} 
+	else 
+	{
+		programCounter++;
+	}
+}

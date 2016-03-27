@@ -102,6 +102,63 @@ bool testMultiplyCommand()
 	return true;
 }
 
+bool testBranchIfEqualToCommand()
+{
+	SETUP_FOR_EXECUTION
+
+	registers.push_back(10);
+	registers.push_back(10);
+
+	command* theCommand = new branchEqualTo(0, 1, 10);
+	theCommand->execute(registers, programCounter);
+
+	if(programCounter != 10)
+	{
+		cout << "Test: Branch if Equal To Failed" << endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool testBranchIfNotEqualToCommand()
+{
+	SETUP_FOR_EXECUTION
+
+	registers.push_back(4);
+	registers.push_back(10);
+
+	command* theCommand = new branchNotEqualTo(0, 1, 10);
+	theCommand->execute(registers, programCounter);
+
+	if(programCounter != 10)
+	{
+		cout << "Test: Branch if Not Equal To Failed" << endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool testBranchGreaterThanCommand()
+{
+	SETUP_FOR_EXECUTION
+
+	registers.push_back(11);
+	registers.push_back(10);
+
+	command* theCommand = new branchGreaterThan(0, 1, 10);
+	theCommand->execute(registers, programCounter);
+
+	if(programCounter != 10)
+	{
+		cout << "Test: Branch if greater than Failed" << endl;
+		return false;
+	}
+
+	return true;
+}
+
 bool runTests()
 {
 	if(!testSetCommand()) return false;
@@ -109,6 +166,9 @@ bool runTests()
 	if(!testSetAndAdd()) return false;
 	if(!testSubtractCommand()) return false;
 	if(!testMultiplyCommand()) return false;
+	if(!testBranchIfEqualToCommand()) return false;
+	if(!testBranchIfNotEqualToCommand()) return false;
+	if(!testBranchGreaterThanCommand()) return false;
 
 	cout << "Test: All Tests Passed!" << endl;
 	return true;
