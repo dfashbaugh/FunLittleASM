@@ -27,3 +27,21 @@ void add::execute(std::vector <int> &registers, int &programCounter)
 
 	programCounter++;
 }
+
+void subtract::execute(std::vector <int> &registers, int &programCounter)
+{
+	setRegisterSize(registers, std::max(std::max(diffAddr, opAddr1), opAddr2));
+
+	registers[diffAddr] = registers[opAddr1] - registers[opAddr2];
+
+	programCounter++;
+}
+
+void multiply::execute(std::vector <int> &registers, int &programCounter)
+{
+	setRegisterSize(registers, std::max(std::max(prodAddr, opAddr1), opAddr2));
+
+	registers[prodAddr] = registers[opAddr1] * registers[opAddr2];
+
+	programCounter++;
+}

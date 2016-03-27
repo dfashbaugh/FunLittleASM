@@ -64,11 +64,51 @@ bool testSetAndAdd()
 	return true;
 }
 
+bool testSubtractCommand()
+{
+	SETUP_FOR_EXECUTION
+
+	registers.push_back(10);
+	registers.push_back(5);
+
+	command* theCommand = new subtract(10, 1, 0);
+	theCommand->execute(registers, programCounter);
+
+	if(registers[10] != -5)
+	{
+		cout <<"Test: Subtract Test Failure" << endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool testMultiplyCommand()
+{
+	SETUP_FOR_EXECUTION
+
+	registers.push_back(10);
+	registers.push_back(5);
+
+	command* theCommand = new multiply(10, 1, 0);
+	theCommand->execute(registers, programCounter);
+
+	if(registers[10] != 50)
+	{
+		cout <<"Test: Multiply Test Failure" << endl;
+		return false;
+	}
+
+	return true;
+}
+
 bool runTests()
 {
 	if(!testSetCommand()) return false;
 	if(!testAddCommand()) return false;
 	if(!testSetAndAdd()) return false;
+	if(!testSubtractCommand()) return false;
+	if(!testMultiplyCommand()) return false;
 
 	cout << "Test: All Tests Passed!" << endl;
 	return true;

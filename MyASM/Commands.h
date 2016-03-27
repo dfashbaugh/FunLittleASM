@@ -41,12 +41,32 @@ struct add : command
 
 struct subtract : command
 {
-	subtract(int diffAddress, int opAddress1, int opAddress2);
+	int diffAddr;
+	int opAddr1;
+	int opAddr2;
+
+	subtract(int diffAddress, int opAddress1, int opAddress2)
+	{
+		diffAddr = diffAddress;
+		opAddr1 = opAddress1;
+		opAddr2 = opAddress2;
+	}
+
 	virtual void execute(std::vector <int> &registers, int &programCounter);
 };
 
 struct multiply : command
 {
-	multiply(int productAddress, int opAddress1, int opAddress2);
+	int prodAddr;
+	int opAddr1;
+	int opAddr2;
+
+	multiply(int productAddress, int opAddress1, int opAddress2)
+	{
+		prodAddr = productAddress;
+		opAddr1 = opAddress1;
+		opAddr2 = opAddress2;
+	}
+
 	virtual void execute(std::vector <int> &registers, int &programCounter);
 };
