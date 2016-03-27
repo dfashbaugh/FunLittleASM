@@ -19,7 +19,7 @@ void printRegisters(std::vector <int> &registers)
 }
 
 // Execute the program defined by the commandVector
-void executeProgram(std::vector <command*> commandVector)
+std::vector <int> executeProgram(std::vector <command*> commandVector, bool print)
 {
 	int programCounter = 0;
 	bool done = false;
@@ -32,7 +32,9 @@ void executeProgram(std::vector <command*> commandVector)
 		if(programCounter >= commandVector.size()) done = true;
 	}
 
-	printRegisters(registers);
+	if(print) printRegisters(registers);
+
+	return registers;
 }
 
 // Set the register buffer to the correct size based on the maximum address

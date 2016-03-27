@@ -29,7 +29,7 @@ int main(void)
 	commandVector.push_back(new branchGreaterThan(2, 0, 3));
 
 	// Execute the program
-	executeProgram(commandVector);
+	executeProgram(commandVector, true);
 
 	cout << "End!" << endl;
 	return 0;

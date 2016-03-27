@@ -159,6 +159,27 @@ bool testBranchGreaterThanCommand()
 	return true;
 }
 
+bool testGreaterThanLoop()
+{
+	std::vector <command*> commandVector;
+	commandVector.push_back(new set(0, 0));
+	commandVector.push_back(new set(1, 1));
+	commandVector.push_back(new set(2, 20));
+	commandVector.push_back(new add(0, 1, 0));
+	commandVector.push_back(new branchGreaterThan(2, 0, 3));
+
+	// Execute the program
+	std::vector <int> registers = executeProgram(commandVector);
+
+	if(registers[0] != 20)
+	{
+		cout << "Test: Greater than loop failed" << endl;
+		return false;
+	}
+
+	return true;
+}
+
 bool runTests()
 {
 	if(!testSetCommand()) return false;
@@ -169,6 +190,7 @@ bool runTests()
 	if(!testBranchIfEqualToCommand()) return false;
 	if(!testBranchIfNotEqualToCommand()) return false;
 	if(!testBranchGreaterThanCommand()) return false;
+	if(!testGreaterThanLoop()) return false;
 
 	cout << "Test: All Tests Passed!" << endl;
 	return true;

@@ -7,7 +7,7 @@ struct command
 	virtual void execute(std::vector <int> &registers, int &programCounter) = 0;
 };
 
-void executeProgram(std::vector <command*> commandVector);
+std::vector <int> executeProgram(std::vector <command*> commandVector, bool print = false);
 
 // Sets a value a setAddr to setValue
 struct set : command
